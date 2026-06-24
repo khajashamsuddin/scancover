@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Khaja Mujtaba's Wedding</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@400;600&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+min-height:100vh;display:flex;justify-content:center;align-items:center;
+overflow:hidden;font-family:'Cormorant Garamond',serif;
+background:radial-gradient(circle at top,#fff7ef,#f6ecdd);
+}
+body::before{
+content:"";position:fixed;inset:0;
+background:
+radial-gradient(circle at 20% 20%,rgba(255,215,170,.25),transparent 20%),
+radial-gradient(circle at 80% 30%,rgba(255,220,180,.2),transparent 25%),
+radial-gradient(circle at 50% 80%,rgba(255,230,190,.15),transparent 30%);
+animation:floatbg 10s ease-in-out infinite;
+}
+@keyframes floatbg{50%{transform:scale(1.05)}}
+.container{width:92%;max-width:460px;perspective:1500px;position:relative;z-index:2}
+
+.inside{
+display:block;background:rgba(255,255,255,.96);
+border-radius:16px;padding:28px;text-align:center;
+box-shadow:0 20px 60px rgba(0,0,0,.15)
+}
+.title{font-family:'Great Vibes',cursive;font-size:3rem;color:#9b6b2f}
+.subtitle{font-family:'Cinzel',serif;letter-spacing:2px;color:#555}
+.arabic{margin:18px 0;font-size:1.4rem;color:#444}
+.line{width:90px;height:2px;background:#d7b06a;margin:18px auto}
+.section{
+margin-top:18px;padding:18px;border:1px solid #ead9b7;
+border-radius:12px;background:#fffdf8
+}
+.section h3{
+display:flex;align-items:center;justify-content:center;gap:8px;
+color:#9b6b2f;margin-bottom:8px
+}
+.section p{margin-bottom:10px;color:#444}
+.btn{
+display:inline-flex;align-items:center;gap:8px;
+padding:12px 22px;border-radius:50px;text-decoration:none;
+font-family:'Cinzel',serif;font-size:13px;letter-spacing:1px;
+color:#8b6427;border:1px solid #c9a86d;
+background:linear-gradient(180deg,#fffdf9,#f6efe1);
+transition:.35s
+}
+.btn:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(155,107,47,.15)}
+.footer{margin-top:18px;color:#777;font-style:italic}
+.gold{
+position:fixed;top:-100%;left:-100%;width:300%;height:300%;
+background:linear-gradient(120deg,transparent 40%,rgba(255,255,255,.35) 50%,transparent 60%);
+animation:shine 5s linear infinite;pointer-events:none
+}
+@keyframes shine{100%{transform:translateX(50%)}}
+</style>
+</head>
+<body>
+
+<div class="gold"></div>
+
+<div class="container">
+
+<div class="inside" id="inside">
+
+<div class="title">Khaja Mujtaba</div>
+<div class="subtitle">WEDDING INVITATION</div>
+
+<div class="arabic">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+<div class="line"></div>
+
+<p>We are delighted to invite you and your family to celebrate this joyous occasion.</p>
+
+<div class="section">
+<h3>
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+<path d="M12 22s7-6.2 7-12a7 7 0 10-14 0c0 5.8 7 12 7 12z" stroke="#9b6b2f" stroke-width="1.8"/>
+<circle cx="12" cy="10" r="2.5" stroke="#9b6b2f" stroke-width="1.8"/>
+</svg>
+Shadi Venue
+</h3>
+<p>Qamar Pavilion Convention Hall, Badlaguda, Hyderabad</p>
+<a class="btn" target="_blank" href="https://maps.app.goo.gl/Ynt5cxxvDFxfCnP69?g_st=ac">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+<path d="M21 3L10 14" stroke="#9b6b2f" stroke-width="2"/>
+<path d="M21 3L14 21L10 14L3 10L21 3Z" stroke="#9b6b2f" stroke-width="2"/>
+</svg>
+Get Directions
+</a>
+</div>
+
+<div class="section">
+<h3>
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+<path d="M12 22s7-6.2 7-12a7 7 0 10-14 0c0 5.8 7 12 7 12z" stroke="#9b6b2f" stroke-width="1.8"/>
+<circle cx="12" cy="10" r="2.5" stroke="#9b6b2f" stroke-width="1.8"/>
+</svg>
+Walima Venue
+</h3>
+<p>Minerva Garden, Champapet, Hyderabad</p>
+<a class="btn" target="_blank" href="https://www.google.com/maps/place/Minerva+Garden+chempapet/@17.3488121,78.5160282,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcb99002a27c255:0x29f0f1d58d1f182a!8m2!3d17.348807!4d78.5186085!16s%2Fg%2F11yvs4yn78!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDYyMS4wIKXMDSoASAFQAw%3D%3D">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+<path d="M21 3L10 14" stroke="#9b6b2f" stroke-width="2"/>
+<path d="M21 3L14 21L10 14L3 10L21 3Z" stroke="#9b6b2f" stroke-width="2"/>
+</svg>
+Get Directions
+</a>
+</div>
+
+<div class="section">
+<h3>
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+<rect x="3" y="5" width="18" height="14" rx="2" stroke="#9b6b2f" stroke-width="1.8"/>
+<path d="M4 7l8 6 8-6" stroke="#9b6b2f" stroke-width="1.8"/>
+</svg>
+Digital Invitation
+</h3>
+
+<a class="btn" target="_blank" href="https://khajashamsuddin.github.io/invitation">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+<rect x="3" y="4" width="18" height="16" rx="2" stroke="#9b6b2f" stroke-width="2"/>
+<path d="M3 7L12 13L21 7" stroke="#9b6b2f" stroke-width="2"/>
+</svg>
+Open Invitation
+</a>
+</div>
+
+<div class="footer">We look forward to celebrating with you</div>
+
+</div>
+</div>
+
+
+
+</body>
+</html>
