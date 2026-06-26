@@ -5,139 +5,460 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Khaja Mujtaba's Wedding</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@400;600&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&family=Lateef&family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-min-height:100vh;display:flex;justify-content:center;align-items:center;
-overflow:hidden;font-family:'Cormorant Garamond',serif;
-background:radial-gradient(circle at top,#fff7ef,#f6ecdd);
+:root {
+  --bg:        #080102;
+  --accent:    #eac266;
+  --gold:      #d4af37;
+  --rose:      #a1556b;
+  --text-main: #fdfaf6;
+  --text-muted:#d4c8b8;
+  --glass-bg:  rgba(255, 248, 250, 0.93);
+  --glass-border: rgba(234, 194, 102, 0.65);
+  --curtain1:  #1c0003;
+  --curtain2:  #800013;
+  --font-display: 'Cinzel', serif;
+  --font-body:    'Montserrat', sans-serif;
+  --font-urdu:    'Lateef', serif;
 }
-body::before{
-content:"";position:fixed;inset:0;
-background:
-radial-gradient(circle at 20% 20%,rgba(255,215,170,.25),transparent 20%),
-radial-gradient(circle at 80% 30%,rgba(255,220,180,.2),transparent 25%),
-radial-gradient(circle at 50% 80%,rgba(255,230,190,.15),transparent 30%);
-animation:floatbg 10s ease-in-out infinite;
-}
-@keyframes floatbg{50%{transform:scale(1.05)}}
-.container{width:92%;max-width:460px;perspective:1500px;position:relative;z-index:2}
 
-.inside{
-display:block;background:rgba(255,255,255,.96);
-border-radius:16px;padding:28px;text-align:center;
-box-shadow:0 20px 60px rgba(0,0,0,.15)
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg);
+  font-family: var(--font-body);
+  overflow: hidden;
+  position: relative;
 }
-.title{font-family:'Great Vibes',cursive;font-size:3rem;color:#9b6b2f}
-.subtitle{font-family:'Cinzel',serif;letter-spacing:2px;color:#555}
-.arabic{margin:18px 0;font-size:1.4rem;color:#444}
-.line{width:90px;height:2px;background:#d7b06a;margin:18px auto}
-.section{
-margin-top:18px;padding:18px;border:1px solid #ead9b7;
-border-radius:12px;background:#fffdf8
+
+/* ── ambient background glow ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 20%, rgba(128,0,19,.22), transparent 55%),
+    radial-gradient(ellipse 55% 45% at 80% 80%, rgba(100,0,12,.18), transparent 55%),
+    radial-gradient(ellipse 40% 40% at 50% 50%, rgba(161,85,107,.08), transparent 60%);
+  pointer-events: none;
 }
-.section h3{
-display:flex;align-items:center;justify-content:center;gap:8px;
-color:#9b6b2f;margin-bottom:8px
+
+/* ── curtain side decorations ── */
+.curtain-l, .curtain-r {
+  position: fixed; top: 0; bottom: 0; width: 38px; z-index: 1;
+  pointer-events: none;
 }
-.section p{margin-bottom:10px;color:#444}
-.btn{
-display:inline-flex;align-items:center;gap:8px;
-padding:12px 22px;border-radius:50px;text-decoration:none;
-font-family:'Cinzel',serif;font-size:13px;letter-spacing:1px;
-color:#8b6427;border:1px solid #c9a86d;
-background:linear-gradient(180deg,#fffdf9,#f6efe1);
-transition:.35s
+.curtain-l {
+  left: 0;
+  background: linear-gradient(to right, #0e0002 0%, #4c000a 40%, #800010 70%, transparent 100%);
 }
-.btn:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(155,107,47,.15)}
-.footer{margin-top:18px;color:#777;font-style:italic}
-.gold{
-position:fixed;top:-100%;left:-100%;width:300%;height:300%;
-background:linear-gradient(120deg,transparent 40%,rgba(255,255,255,.35) 50%,transparent 60%);
-animation:shine 5s linear infinite;pointer-events:none
+.curtain-r {
+  right: 0;
+  background: linear-gradient(to left, #0e0002 0%, #4c000a 40%, #800010 70%, transparent 100%);
 }
-@keyframes shine{100%{transform:translateX(50%)}}
+.curtain-l::after, .curtain-r::after {
+  content: '';
+  position: absolute; top: 0; bottom: 0; width: 2px;
+  background: linear-gradient(to bottom, transparent, rgba(212,175,55,.5) 20%, rgba(212,175,55,.7) 50%, rgba(212,175,55,.5) 80%, transparent);
+}
+.curtain-l::after { right: 0; }
+.curtain-r::after { left: 0; }
+
+/* ── top rod ── */
+.rod {
+  position: fixed; top: 0; left: 0; right: 0; height: 7px; z-index: 10;
+  background: linear-gradient(90deg,
+    #0e0802 0%, #5a3a10 8%, #a06820 18%, #d4a040 30%,
+    #f0d070 42%, #fae898 50%, #f0d070 58%,
+    #d4a040 70%, #a06820 82%, #5a3a10 92%, #0e0802 100%);
+  box-shadow: 0 3px 18px rgba(0,0,0,.95), 0 1px 0 rgba(255,245,190,.25);
+  pointer-events: none;
+}
+
+/* ── container & card ── */
+.container {
+  position: relative; z-index: 5;
+  width: 92%; max-width: 460px;
+}
+
+.card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 30px 26px 26px;
+  text-align: center;
+  box-shadow:
+    0 25px 55px rgba(0,0,0,.75),
+    inset 0 0 0 4px rgba(255,255,255,.75),
+    inset 0 0 0 5px rgba(234,194,102,.28);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── corner florals (matching the big site's SVG corners) ── */
+.card::before, .card::after {
+  content: '';
+  position: absolute;
+  width: 130px; height: 130px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 0;
+  opacity: .85;
+}
+.card::before {
+  top: 0; left: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M10,10 Q30,0 50,20 T70,50 Q40,60 20,40 T10,10' fill='%23f9d5e0'/%3E%3Cpath d='M5,20 Q20,10 40,30 T50,60 Q20,50 10,30 T5,20' fill='%23e29bb3'/%3E%3Ccircle cx='30' cy='30' r='3.5' fill='%23eac266'/%3E%3Cpath d='M50,20 Q60,10 70,25 T65,45 Q45,35 50,20' fill='%238c5b6b' opacity='0.7'/%3E%3C/svg%3E");
+}
+.card::after {
+  bottom: 0; right: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M90,90 Q70,100 50,80 T30,50 Q60,40 80,60 T90,90' fill='%23f9d5e0'/%3E%3Cpath d='M95,80 Q80,90 60,70 T50,40 Q80,50 90,70 T95,80' fill='%23e29bb3'/%3E%3Ccircle cx='70' cy='70' r='3.5' fill='%23eac266'/%3E%3Cpath d='M50,80 Q40,90 30,75 T35,55 Q55,65 50,80' fill='%238c5b6b' opacity='0.7'/%3E%3C/svg%3E");
+}
+
+.card > * { position: relative; z-index: 1; }
+
+/* ── bismillah ── */
+.bismillah {
+  font-family: var(--font-urdu);
+  font-size: 1.95rem;
+  color: var(--rose);
+  line-height: 1.8;
+  direction: rtl;
+  margin-bottom: 14px;
+  padding: 8px 12px;
+  border: 1px solid rgba(161,85,107,.22);
+  border-radius: 10px;
+  background: rgba(255,255,255,.55);
+  text-shadow: 0 1px 0 #fff;
+}
+
+/* ── eyebrow tag ── */
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: .58rem;
+  font-weight: 500;
+  letter-spacing: .38em;
+  text-transform: uppercase;
+  color: #9c7b84;
+  margin-bottom: 6px;
+}
+
+/* ── name ── */
+.title {
+  font-family: var(--font-display);
+  font-size: 2.55rem;
+  font-weight: 600;
+  color: var(--rose);
+  letter-spacing: .04em;
+  line-height: 1.15;
+  margin-bottom: 2px;
+}
+
+/* ── subtitle tag ── */
+.subtitle {
+  font-family: var(--font-display);
+  font-size: .6rem;
+  font-weight: 400;
+  letter-spacing: .32em;
+  color: #9c7b84;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+/* ── ornament divider ── */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 14px 0;
+}
+.divider::before, .divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212,175,55,.6), transparent);
+}
+.divider-gem {
+  font-size: .65rem;
+  color: var(--accent);
+  letter-spacing: .2em;
+  opacity: .8;
+  white-space: nowrap;
+}
+
+/* ── body text ── */
+.body-text {
+  font-size: .82rem;
+  font-weight: 300;
+  color: #5a3c44;
+  line-height: 1.75;
+  margin-bottom: 14px;
+}
+
+/* ── section panels ── */
+.section {
+  margin-top: 12px;
+  padding: 16px 18px;
+  border: 1px solid rgba(234,194,102,.38);
+  border-radius: 10px;
+  background: rgba(255,255,255,.55);
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+.section::before {
+  content: '';
+  position: absolute; top: 0; left: 0; bottom: 0; width: 3px;
+  background: linear-gradient(to bottom, transparent, var(--rose), transparent);
+  border-radius: 3px 0 0 3px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.section-header h3 {
+  font-family: var(--font-display);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--rose);
+}
+.section-icon { color: var(--rose); flex-shrink: 0; }
+
+.section-tag {
+  font-family: var(--font-body);
+  font-size: .56rem;
+  font-weight: 500;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: #9c7b84;
+  margin-bottom: 4px;
+}
+.section-val {
+  font-family: var(--font-display);
+  font-size: .9rem;
+  font-weight: 600;
+  color: #3b1f27;
+  line-height: 1.45;
+  margin-bottom: 10px;
+}
+
+/* ── direction button ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 18px;
+  border-radius: 30px;
+  font-family: var(--font-display);
+  font-size: .62rem;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--rose);
+  border: 1px solid rgba(161,85,107,.55);
+  background: rgba(161,85,107,.06);
+  transition: background .3s, border-color .3s, transform .25s, box-shadow .3s;
+  position: relative;
+  overflow: hidden;
+}
+.btn::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: var(--rose);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform .35s ease;
+  z-index: 0;
+  border-radius: 30px;
+}
+.btn:hover { color: #fff; border-color: var(--rose); box-shadow: 0 6px 18px rgba(161,85,107,.25); transform: translateY(-2px); }
+.btn:hover::before { transform: scaleX(1); transform-origin: left; }
+.btn > * { position: relative; z-index: 1; }
+
+/* ── open invitation button ── */
+.btn-primary {
+  background: rgba(161,85,107,.1);
+  border-color: var(--rose);
+  font-size: .65rem;
+  padding: 10px 22px;
+}
+
+/* ── footer ── */
+.footer {
+  margin-top: 16px;
+  font-family: var(--font-display);
+  font-size: .68rem;
+  letter-spacing: .12em;
+  color: #9c7b84;
+  font-style: italic;
+}
+
+/* ── gold scan shimmer ── */
+.shimmer {
+  position: fixed; top: -100%; left: -100%;
+  width: 300%; height: 300%;
+  background: linear-gradient(118deg, transparent 38%, rgba(255,255,255,.08) 50%, transparent 62%);
+  animation: shimmer 6s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+@keyframes shimmer { 100% { transform: translateX(55%); } }
+
+/* ── particles / petal scatter ── */
+.petals-wrap {
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 0; overflow: hidden;
+}
+.petal {
+  position: absolute;
+  width: 10px; height: 14px;
+  border-radius: 50% 50% 50% 0;
+  opacity: 0;
+  animation: fall linear infinite;
+}
+@keyframes fall {
+  0%   { transform: translateY(-20px) rotate(0deg); opacity: .8; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+/* ── responsive ── */
+@media (max-width: 400px) {
+  .title { font-size: 2.1rem; }
+  .card  { padding: 22px 16px 20px; }
+}
 </style>
 </head>
 <body>
 
-<div class="gold"></div>
+<!-- Background atmosphere -->
+<div class="curtain-l"></div>
+<div class="curtain-r"></div>
+<div class="rod"></div>
+<div class="shimmer"></div>
+
+<div class="petals-wrap" id="petals"></div>
 
 <div class="container">
+  <div class="card" id="card">
 
-<div class="inside" id="inside">
+    <!-- Bismillah -->
+    <div class="bismillah" lang="ar">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
 
-<div class="title">Khaja Mujtaba</div>
-<div class="subtitle">WEDDING INVITATION</div>
+    <!-- Eyebrow + Name -->
+    <p class="eyebrow">With the blessings of Allah (SWT)</p>
+    <h1 class="title">Khaja Mujtaba</h1>
+    <p class="subtitle">Wedding Invitation</p>
 
-<div class="arabic">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
-<div class="line"></div>
+    <!-- Divider -->
+    <div class="divider"><span class="divider-gem">✦ &nbsp; ✦ &nbsp; ✦</span></div>
 
-<p>We are delighted to invite you and your family to celebrate this joyous occasion.</p>
+    <p class="body-text">We are delighted to invite you and your family to celebrate this joyous and blessed occasion with us.</p>
 
-<div class="section">
-<h3>
-<svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-<path d="M12 22s7-6.2 7-12a7 7 0 10-14 0c0 5.8 7 12 7 12z" stroke="#9b6b2f" stroke-width="1.8"/>
-<circle cx="12" cy="10" r="2.5" stroke="#9b6b2f" stroke-width="1.8"/>
-</svg>
-Shadi Venue
-</h3>
-<p>Qamar Pavilion Convention Hall, Badlaguda, Hyderabad</p>
-<a class="btn" target="_blank" href="https://maps.app.goo.gl/Ynt5cxxvDFxfCnP69?g_st=ac">
-<svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-<path d="M21 3L10 14" stroke="#9b6b2f" stroke-width="2"/>
-<path d="M21 3L14 21L10 14L3 10L21 3Z" stroke="#9b6b2f" stroke-width="2"/>
-</svg>
-Get Directions
-</a>
+    <!-- Nikah / Shadi Venue -->
+    <div class="section">
+      <div class="section-tag">The Sacred Union</div>
+      <div class="section-header">
+        <svg class="section-icon" width="15" height="15" viewBox="0 0 24 24" fill="none">
+          <path d="M12 22s7-6.2 7-12a7 7 0 10-14 0c0 5.8 7 12 7 12z" stroke="currentColor" stroke-width="1.8"/>
+          <circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.8"/>
+        </svg>
+        <h3>Shadi Venue</h3>
+      </div>
+      <div class="section-val">Qamar Pavilion Convention Hall<br><span style="font-size:.78rem;font-weight:400;color:#7a4a56;">Badlaguda, Hyderabad &nbsp;·&nbsp; 31 July 2026</span></div>
+      <a class="btn" target="_blank" href="https://maps.app.goo.gl/Ynt5cxxvDFxfCnP69?g_st=ac">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" fill="currentColor" stroke="none"/>
+        </svg>
+        Get Directions
+      </a>
+    </div>
+
+    <!-- Walima Venue -->
+    <div class="section">
+      <div class="section-tag">The Wedding Reception</div>
+      <div class="section-header">
+        <svg class="section-icon" width="15" height="15" viewBox="0 0 24 24" fill="none">
+          <path d="M12 22s7-6.2 7-12a7 7 0 10-14 0c0 5.8 7 12 7 12z" stroke="currentColor" stroke-width="1.8"/>
+          <circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.8"/>
+        </svg>
+        <h3>Walima Venue</h3>
+      </div>
+      <div class="section-val">Minerva Garden Function Hall<br><span style="font-size:.78rem;font-weight:400;color:#7a4a56;">Champapet, Hyderabad &nbsp;·&nbsp; 2 August 2026</span></div>
+      <a class="btn" target="_blank" href="https://www.google.com/maps/place/Minerva+Garden+chempapet/@17.3488121,78.5160282,17z">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" fill="currentColor" stroke="none"/>
+        </svg>
+        Get Directions
+      </a>
+    </div>
+
+    <!-- Digital Invitation -->
+    <div class="section">
+      <div class="section-tag">Full Experience</div>
+      <div class="section-header">
+        <svg class="section-icon" width="15" height="15" viewBox="0 0 24 24" fill="none">
+          <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/>
+          <path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.8"/>
+        </svg>
+        <h3>Digital Invitation</h3>
+      </div>
+      <div class="section-val" style="font-size:.82rem;font-weight:300;color:#5a3c44;font-family:var(--font-body);">Open the full cinematic invitation with all details, countdown &amp; more.</div>
+      <a class="btn btn-primary" target="_blank" href="https://khajashamsuddin.github.io/invitation">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+        </svg>
+        Open Invitation
+      </a>
+    </div>
+
+    <div class="divider" style="margin-top:18px;"><span class="divider-gem">— Ahmed Family</span></div>
+    <p class="footer">We look forward to celebrating with you &amp; your family</p>
+
+  </div>
 </div>
 
-<div class="section">
-<h3>
-<svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-<path d="M12 22s7-6.2 7-12a7 7 0 10-14 0c0 5.8 7 12 7 12z" stroke="#9b6b2f" stroke-width="1.8"/>
-<circle cx="12" cy="10" r="2.5" stroke="#9b6b2f" stroke-width="1.8"/>
-</svg>
-Walima Venue
-</h3>
-<p>Minerva Garden, Champapet, Hyderabad</p>
-<a class="btn" target="_blank" href="https://www.google.com/maps/place/Minerva+Garden+chempapet/@17.3488121,78.5160282,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcb99002a27c255:0x29f0f1d58d1f182a!8m2!3d17.348807!4d78.5186085!16s%2Fg%2F11yvs4yn78!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDYyMS4wIKXMDSoASAFQAw%3D%3D">
-<svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-<path d="M21 3L10 14" stroke="#9b6b2f" stroke-width="2"/>
-<path d="M21 3L14 21L10 14L3 10L21 3Z" stroke="#9b6b2f" stroke-width="2"/>
-</svg>
-Get Directions
-</a>
-</div>
+<script>
+/* ── entrance animation ── */
+window.addEventListener('DOMContentLoaded', () => {
+  const card = document.getElementById('card');
+  gsap.from(card, {
+    y: 28, opacity: 0, scale: 0.96,
+    duration: 1.0, ease: 'power3.out', delay: 0.18
+  });
 
-<div class="section">
-<h3>
-<svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-<rect x="3" y="5" width="18" height="14" rx="2" stroke="#9b6b2f" stroke-width="1.8"/>
-<path d="M4 7l8 6 8-6" stroke="#9b6b2f" stroke-width="1.8"/>
-</svg>
-Digital Invitation
-</h3>
-
-<a class="btn" target="_blank" href="https://khajashamsuddin.github.io/invitation">
-<svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-<rect x="3" y="4" width="18" height="16" rx="2" stroke="#9b6b2f" stroke-width="2"/>
-<path d="M3 7L12 13L21 7" stroke="#9b6b2f" stroke-width="2"/>
-</svg>
-Open Invitation
-</a>
-</div>
-
-<div class="footer">We look forward to celebrating with you</div>
-
-</div>
-</div>
-
-
+  // Petal rain
+  const wrap = document.getElementById('petals');
+  const colors = ['#f9d5e0','#e29bb3','#eac266','#ffeaad','#d4af37','#c8a0b0'];
+  for (let i = 0; i < 22; i++) {
+    const p = document.createElement('div');
+    p.className = 'petal';
+    const size = 6 + Math.random() * 8;
+    p.style.cssText = `
+      left: ${Math.random()*100}%;
+      width: ${size}px;
+      height: ${size*1.35}px;
+      background: ${colors[Math.floor(Math.random()*colors.length)]};
+      opacity: 0;
+      animation-duration: ${7 + Math.random()*8}s;
+      animation-delay: ${Math.random()*10}s;
+      transform-origin: center;
+    `;
+    wrap.appendChild(p);
+  }
+});
+</script>
 
 </body>
 </html>
