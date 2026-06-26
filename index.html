@@ -34,8 +34,10 @@ body {
   align-items: center;
   background: var(--bg);
   font-family: var(--font-body);
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   position: relative;
+  padding: 24px 0;
 }
 
 /* ── ambient background glow ── */
@@ -84,7 +86,9 @@ body::before {
 /* ── container & card ── */
 .container {
   position: relative; z-index: 5;
-  width: 92%; max-width: 460px;
+  width: min(92%, 460px);
+  max-width: 460px;
+  margin: 0 auto;
 }
 
 .card {
@@ -272,6 +276,12 @@ body::before {
   transition: background .3s, border-color .3s, transform .25s, box-shadow .3s;
   position: relative;
   overflow: hidden;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn:active {
+  transform: scale(0.98);
+  box-shadow: 0 3px 10px rgba(161,85,107,.16);
 }
 .btn::before {
   content: '';
@@ -283,8 +293,10 @@ body::before {
   z-index: 0;
   border-radius: 30px;
 }
-.btn:hover { color: #fff; border-color: var(--rose); box-shadow: 0 6px 18px rgba(161,85,107,.25); transform: translateY(-2px); }
-.btn:hover::before { transform: scaleX(1); transform-origin: left; }
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover { color: #fff; border-color: var(--rose); box-shadow: 0 6px 18px rgba(161,85,107,.25); transform: translateY(-2px); }
+  .btn:hover::before { transform: scaleX(1); transform-origin: left; }
+}
 .btn > * { position: relative; z-index: 1; }
 
 /* ── open invitation button ── */
@@ -334,9 +346,28 @@ body::before {
 }
 
 /* ── responsive ── */
-@media (max-width: 400px) {
-  .title { font-size: 2.1rem; }
-  .card  { padding: 22px 16px 20px; }
+@media (max-width: 480px) {
+  body { padding: 18px 0; align-items: flex-start; }
+  .container { width: min(94%, 460px); }
+  .card { padding: 22px 16px 20px; border-radius: 14px; }
+  .bismillah { font-size: 1.65rem; padding: 7px 10px; }
+  .eyebrow { font-size: .52rem; letter-spacing: .28em; }
+  .title { font-size: 2.05rem; }
+  .subtitle { font-size: .56rem; letter-spacing: .24em; }
+  .body-text { font-size: .79rem; line-height: 1.7; }
+  .section { padding: 13px 14px; }
+  .section-header h3 { font-size: .68rem; }
+  .section-val { font-size: .84rem; }
+  .btn { width: 100%; justify-content: center; padding: 10px 14px; font-size: .58rem; }
+}
+
+@media (max-width: 360px) {
+  .card { padding: 18px 12px 16px; }
+  .bismillah { font-size: 1.5rem; }
+  .title { font-size: 1.85rem; }
+  .body-text { font-size: .76rem; }
+  .section { padding: 12px 12px; }
+  .section-val { font-size: .78rem; }
 }
 </style>
 </head>
